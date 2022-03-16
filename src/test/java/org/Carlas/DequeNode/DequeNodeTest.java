@@ -26,6 +26,7 @@ class DequeNodeTest<T> {
     public void testComputeIfNodeIsTheFirstNode() {
         previous = null;
         assertTrue(deque.isFirstNode());
+        
     }
 
 
