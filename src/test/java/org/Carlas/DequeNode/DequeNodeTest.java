@@ -12,6 +12,7 @@ class DequeNodeTest<T> {
     private T item;
     private DequeNode<T> next;
     private DequeNode<T> previous;
+
     @BeforeEach
     private void setup() {
         deque = new DequeNode(item, next, previous);
@@ -26,7 +27,7 @@ class DequeNodeTest<T> {
     public void testComputeIfNodeIsTheFirstNode() {
         previous = null;
         assertTrue(deque.isFirstNode());
-        
+
     }
 
 
