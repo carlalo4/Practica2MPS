@@ -3,6 +3,8 @@ package org.Carlas.DoubleLinkedListQueue;
 import org.Carlas.DequeNode.DequeNode;
 import org.Carlas.DoubleEndedQueuees.DoubleEndedQueuees;
 
+import java.util.Deque;
+
 public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
     private DequeNode<T> root;
 
@@ -35,26 +37,50 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
     }
 
     public void appendLeft(DequeNode<T> node) {
-
+        if (root != null){
+            node.setNext(root);
+            root.setPrevious(node);
+        }
+        root = node;
     }
 
     public void deleteFirst() {
-
+        if (root!=null) {
+            root = root.getNext();
+            root.setPrevious(null);
+        }
     }
 
     public void deleteLast() {
-
+        if (root!=null) {
+            DequeNode<T> auxiliar = root;
+            while (!auxiliar.isLastNode()) {
+                auxiliar = auxiliar.getNext();
+            }
+            auxiliar.getPrevious().setNext(null);
+            auxiliar.setPrevious(null);
+        }
     }
 
     public DequeNode peekFirst() {
-        return null;
+        return root;
     }
 
     public DequeNode peekLast() {
-        return null;
+        DequeNode<T> res = root;
+        while (!res.isLastNode()) {
+            res = res.getNext();
+        }
+        return res;
     }
 
     public int size() {
-        return 0;
+        DequeNode<T> auxiliar = root;
+        int cont = 0;
+        while (!auxiliar.isLastNode()) {
+            cont++;
+            auxiliar = auxiliar.getNext();
+        }
+        return cont;
     }
 }
