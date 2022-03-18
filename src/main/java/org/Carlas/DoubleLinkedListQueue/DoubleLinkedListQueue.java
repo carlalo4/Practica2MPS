@@ -12,11 +12,6 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
         root = null;
     }
 
-    private void recorrerLista(DequeNode<T> node){
-        while(!node.isLastNode()){
-             node = node.getNext();
-        }
-    }
 
     public void append(DequeNode<T> node) {
         if(root==null){//La lista esta vacia
@@ -28,14 +23,15 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
             DequeNode<T> auxiliar = root;
 
             //Recorremos la lista hasta llegar al ultimo nodo
-            recorrerLista(auxiliar);
+            while(!auxiliar.isLastNode()){
+                auxiliar = auxiliar.getNext();
+            }
 
             //Hemos encontrado el ultimo nodo, lo enlazamos con el nuevo
             auxiliar.setNext(node);
             node.setPrevious(auxiliar);
 
         }
-
     }
 
     public void appendLeft(DequeNode<T> node) {
@@ -56,7 +52,9 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
     public void deleteLast() {
         if (root!=null) {
             DequeNode<T> auxiliar = root;
-            recorrerLista(auxiliar);
+            while(!auxiliar.isLastNode()){
+                auxiliar = auxiliar.getNext();
+            }
             auxiliar.getPrevious().setNext(null);
             auxiliar.setPrevious(null);
         }
@@ -68,7 +66,9 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
 
     public DequeNode peekLast() {
         DequeNode<T> res = root;
-        recorrerLista(res);
+        while(!res.isLastNode()){
+            res = res.getNext();
+        }
         return res;
     }
 
