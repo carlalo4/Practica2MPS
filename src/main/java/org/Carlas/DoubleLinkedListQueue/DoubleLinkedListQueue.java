@@ -74,7 +74,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
 
     public int size() {
         DequeNode<T> auxiliar = root;
-        int cont = 0;
+        int cont = 1;
         while (!auxiliar.isLastNode()) {
             cont++;
             auxiliar = auxiliar.getNext();
