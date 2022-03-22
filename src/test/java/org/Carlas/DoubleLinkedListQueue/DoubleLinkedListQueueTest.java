@@ -88,5 +88,19 @@ class DoubleLinkedListQueueTest<T> {
         assertThrows(RuntimeException.class, () -> linkedListQueue.getAt(5)) ;
     }
 
+    @Test
+    public void testComputeIfDeleteMethodWorks(){
+        linkedListQueue.append(node1);
+        linkedListQueue.append(node2);
+        linkedListQueue.append(node3);
+
+        int expectedValue = linkedListQueue.size()-1;
+        linkedListQueue.delete(node2);
+
+        assertEquals(expectedValue, linkedListQueue.size());
+
+    }
+
+
 
 }

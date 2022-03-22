@@ -94,7 +94,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
         }
 
 
-        int cont = 0;
+        int cont = 1;
         DequeNode<T> res = root;
         while (cont < position) {
             res = res.getNext();
@@ -126,6 +126,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
     @Override
     public void delete(DequeNode<T> node) {
         DequeNode<T> res = find(node.getItem());
+
         res.getPrevious().setNext(res.getNext());
         res.getNext().setPrevious(res.getPrevious());
 
