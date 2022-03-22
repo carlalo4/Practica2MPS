@@ -12,10 +12,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class DoubleLinkedListQueueTest<T> {
 
     private DoubleLinkedListQueue<Integer> linkedListQueue;
+    private DequeNode<Integer> node1, node2, node3;
 
     @BeforeEach
     private void setup() {
         linkedListQueue = new DoubleLinkedListQueue<>();
+        node1 = new DequeNode<>(4,null,null);
+        node2 = new DequeNode<>(5,null,null);
+        node3 = new DequeNode<>(3,null,null);
     }
 
     @AfterEach
@@ -25,9 +29,6 @@ class DoubleLinkedListQueueTest<T> {
 
     @Test
     public void testComputeIfAppendMethodWorks(){
-        DequeNode<Integer> node1 = new DequeNode<>(4,null,null);
-        DequeNode<Integer> node2 = new DequeNode<>(5,null,null);
-        DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
         linkedListQueue.append(node1);
         linkedListQueue.append(node2);
         linkedListQueue.append(node3);
@@ -36,8 +37,6 @@ class DoubleLinkedListQueueTest<T> {
 
     @Test
     public void testComputeIfAppendLeftMethodWorks() {
-        DequeNode<Integer> node1 = new DequeNode<>(4,null,null);
-        DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         linkedListQueue.appendLeft(node1);
         linkedListQueue.appendLeft(node2);
         assertEquals(node2,linkedListQueue.peekFirst());
@@ -45,8 +44,6 @@ class DoubleLinkedListQueueTest<T> {
 
     @Test
     public void testComputeIfDeleteFirstMethodWorks() {
-        DequeNode<Integer> node1 = new DequeNode<>(4,null,null);
-        DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
         linkedListQueue.append(node1);
         linkedListQueue.append(node2);
         linkedListQueue.deleteFirst();
@@ -55,9 +52,6 @@ class DoubleLinkedListQueueTest<T> {
 
     @Test
     public void testComputeIfDeleteLastMethodWorks() {
-        DequeNode<Integer> node1 = new DequeNode<>(4,null,null);
-        DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
-        DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
         linkedListQueue.append(node1);
         linkedListQueue.append(node2);
         linkedListQueue.append(node3);
@@ -67,12 +61,32 @@ class DoubleLinkedListQueueTest<T> {
 
     @Test
     public void testComputeIfSizeMethodWorks() {
-        DequeNode<Integer> node1 = new DequeNode<>(4,null,null);
-        DequeNode<Integer> node2 = new DequeNode<>(2,null,null);
-        DequeNode<Integer> node3 = new DequeNode<>(3,null,null);
         linkedListQueue.append(node1);
         linkedListQueue.append(node2);
         linkedListQueue.append(node3);
         assertEquals(3,linkedListQueue.size());
     }
+
+    @Test
+    public void testComputeIfGetAtMethodWorks(){
+        linkedListQueue.append(node1);
+        linkedListQueue.append(node2);
+        linkedListQueue.append(node3);
+        assertEquals(node2, linkedListQueue.getAt(2));
+    }
+
+    @Test
+    public void testComputeIfGetAtMethodRaiseExceptionIfEmptyList(){
+        assertThrows(RuntimeException.class, () -> linkedListQueue.getAt(2)) ;
+    }
+
+    @Test
+    public void testComputeIfGetAtMethodRaiseExceptionIfPositionGivenHigherThanSize(){
+        linkedListQueue.append(node1);
+        linkedListQueue.append(node2);
+        linkedListQueue.append(node3);
+        assertThrows(RuntimeException.class, () -> linkedListQueue.getAt(5)) ;
+    }
+
+
 }
