@@ -116,24 +116,27 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
             res = res.getNext();
         }
 
+        if(res==null){
+            throw  new RuntimeException("El item no está en la lista");
+        }
+
         return res;
     }
 
     @Override
     public void delete(DequeNode<T> node) {
-        if (root != null) {
-            DequeNode<T> res = root;
-            while (res != node) {
-                res = res.getNext();
-            }
-            if (res == node) {
+        DequeNode<T> res = find(node.getItem());
+        res.getPrevious().setNext(res.getNext());
+        res.getNext().setPrevious(res.getPrevious());
 
-            }
-        }
+        res.setPrevious(null);
+        res.setNext(null);
+
     }
 
     @Override
     public void sort(Comparator<?> comparator) {
+
 
     }
 }
