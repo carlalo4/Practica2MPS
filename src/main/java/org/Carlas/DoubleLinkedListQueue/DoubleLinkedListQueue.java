@@ -135,8 +135,23 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
     }
 
     @Override
-    public void sort(Comparator<?> comparator) {
+    public void sort(Comparator<T> comparator) {
+        DoubleLinkedListQueue<T> listaOrdenada = new DoubleLinkedListQueue<>();
+        DequeNode<T> aux = root;
+        DequeNode<T> sig = aux.getNext();
 
-
+        int tam = size();
+        for (int i = 0 ; i < tam ; i++) {
+            while (!sig.isLastNode()) {
+                int orden = comparator.compare(aux.getItem(),sig.getItem());
+                if (orden > 0) {
+                    aux = sig;
+                }
+                sig = sig.getNext();
+            }
+            listaOrdenada.append(aux);
+            delete(aux);
+        }
     }
+
 }
