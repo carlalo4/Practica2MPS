@@ -3,6 +3,7 @@ package org.Carlas.DoubleLinkedListQueue;
 import org.Carlas.DequeNode.DequeNode;
 import org.Carlas.DoubleEndedQueuees.DoubleEndedQueuees;
 
+import java.util.Comparator;
 import java.util.Deque;
 
 public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
@@ -80,5 +81,59 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
             auxiliar = auxiliar.getNext();
         }
         return cont;
+    }
+
+    @Override
+    public DequeNode<T> getAt(int position) {
+        if(root==null){
+            throw new RuntimeException("Lista vacia");
+        }
+
+        if(size() < position) {
+            throw new RuntimeException("El tamaño es menor que la posición indicada");
+        }
+
+
+        int cont = 0;
+        DequeNode<T> res = root;
+        while (cont < position) {
+            res = res.getNext();
+            cont++;
+        }
+        return res;
+
+    }
+
+    @Override
+    public DequeNode<T> find(T item) {
+
+        if (root == null) {
+            throw new RuntimeException("Lista vacia");
+        }
+
+        DequeNode<T> res = root;
+        while (res.getItem() != item) {
+            res = res.getNext();
+        }
+
+        return res;
+    }
+
+    @Override
+    public void delete(DequeNode<T> node) {
+        if (root != null) {
+            DequeNode<T> res = root;
+            while (res != node) {
+                res = res.getNext();
+            }
+            if (res == node) {
+
+            }
+        }
+    }
+
+    @Override
+    public void sort(Comparator<?> comparator) {
+
     }
 }
