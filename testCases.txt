@@ -1,0 +1,39 @@
+DequeNodeTest
+
+1. prueba getItem() -> devuelve el item esperado
+2. prueba getNext() -> devuelve el next esperado
+3. prueba getPrevious() -> devuelve el previous esperado 
+4. prueba isFirstNode() -> verifica si el elemento es el primero
+5. prueba isLastNode() -> verifica si el elemento es el último
+6. prueba isNotATerminalNode() -> verifica si el elemento no es ni el primero
+ni el último
+
+DoubleLinkedListQueueTest
+
+1. prueba testComputeIfAppendMethodWorks() -> Comprueba que el
+método append funcione
+2. prueba testComputeIfAppendLeftMethodWorks() -> Comprueba que el método
+append left funcione
+3. prueba testComputeIfDeleteFirstMethodWorks() -> Comprueba que el método
+DeleteFirst funcione
+4. prueba testComputeIfDeleteLastMethodWorks() -> Comprueba que el método
+DeleteLast funcione
+5. prueba testComputeIfSizeMethodWorks() -> Comprueba que el método size
+funcione
+6. prueba testComputeIfGetAtMethodWorks() -> Comprueba que el método GetAt
+funcione
+7. prueba testComputeIfGetAtMethodRaiseExceptionIfEmptyList() -> Comprueba que
+el método GetAt devuelve una excepción si la lista está vacía
+8. prueba testComputeIfGetAtMethodRaiseExceptionIfPositionGivenHigherThanSize() ->
+Comprueba que el método GetAt devuelve una excepción si la posición dada es
+mayor que el tamaño de la lista
+9. prueba testComputeIfDeleteMethodWorks() -> Comprueba que el método Delete
+funcione
+10. prueba testComputeIfDeleteMethodRaiseExceptionIfEmptyList() -> Comprueba
+que el método Delete devuelve una excepción si la lista está vacía
+11. prueba testComputeIfFindMethodRaiseExceptionIfItemNotFound() -> Comprueba
+que el método Find devuelve una excepción si el item no es encontrado
+12. prueba testComputeIfSortMethodRaiseExceptionIfEmptyList() -> Comprueba
+que el método Sort devuelve una excepción si la lista está vacía
+13. prueba testComputeIfSortMethodWorks() -> Comprueba que el método Sort
+funcione
