@@ -136,8 +136,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
     }
 
     @Override
-    // (Node 3) - (Node 2) - (Node 5) - (Node 4)
-    //              m            a
+
     public void sort(Comparator<T> comparator) {
         if (root == null) {
             throw new RuntimeException("Lista vacia");

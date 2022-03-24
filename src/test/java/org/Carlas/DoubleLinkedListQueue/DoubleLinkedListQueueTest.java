@@ -103,6 +103,11 @@ class DoubleLinkedListQueueTest<T> {
 
     }
 
+    @Test
+    public void testComputeIfDeleteMethodRaiseExceptionIfEmptyList(){
+        assertThrows(RuntimeException.class, () -> linkedListQueue.delete(node2));
+    }
+
 
     @Test
     public void testComputeIfFindMethodRaiseExceptionIfItemNotFound(){
@@ -111,11 +116,6 @@ class DoubleLinkedListQueueTest<T> {
         linkedListQueue.append(node3);
 
         assertThrows(RuntimeException.class, () -> linkedListQueue.find(8));
-    }
-
-    @Test
-    public void testComputeIfDeleteMethodRaiseExceptionIfEmptyList(){
-        assertThrows(RuntimeException.class, () -> linkedListQueue.delete(node2));
     }
 
     @Test
