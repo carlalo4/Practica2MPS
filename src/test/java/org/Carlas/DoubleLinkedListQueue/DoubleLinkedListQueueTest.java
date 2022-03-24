@@ -3,8 +3,10 @@ package org.Carlas.DoubleLinkedListQueue;
 import org.Carlas.DequeNode.DequeNode;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.util.Comparator;
 import java.util.Deque;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -102,5 +104,48 @@ class DoubleLinkedListQueueTest<T> {
     }
 
 
+    @Test
+    public void testComputeIfFindMethodRaiseExceptionIfItemNotFound(){
+        linkedListQueue.append(node1);
+        linkedListQueue.append(node2);
+        linkedListQueue.append(node3);
+
+        assertThrows(RuntimeException.class, () -> linkedListQueue.find(8));
+    }
+
+    @Test
+    public void testComputeIfDeleteMethodRaiseExceptionIfEmptyList(){
+        assertThrows(RuntimeException.class, () -> linkedListQueue.delete(node2));
+    }
+
+    @Test
+    public void testComputeIfSortMethodRaiseExceptionIfEmptyList(){
+        Comparator<Integer> comparator = new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return (o1>o2) ? 1 : -1;
+            }
+        };
+        assertThrows(RuntimeException.class, () -> linkedListQueue.sort(comparator));
+    }
+    @Test
+    public void testComputeIfSortMethodWorks(){
+        Comparator<Integer> comparator = new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return (o1>o2) ? 1 : -1;
+            }
+        };
+
+        linkedListQueue.append(node2);
+        linkedListQueue.append(node1);
+        linkedListQueue.append(node3);
+
+        linkedListQueue.sort(comparator);
+        assertEquals(3, linkedListQueue.getAt(1).getItem());
+        assertEquals(4, linkedListQueue.getAt(2).getItem());
+        assertEquals(5, linkedListQueue.getAt(3).getItem());
+
+    }
 
 }

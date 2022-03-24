@@ -112,12 +112,12 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
         }
 
         DequeNode<T> res = root;
-        while (res.getItem() != item) {
+        while (!res.getItem().equals(item)) {
             res = res.getNext();
         }
 
-        if(res==null){
-            throw  new RuntimeException("El item no está en la lista");
+        if(res.equals(null)){
+            throw new RuntimeException("El item no está en la lista");
         }
 
         return res;
@@ -136,23 +136,29 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueuees<T> {
     }
 
     @Override
+    // (Node 3) - (Node 2) - (Node 5) - (Node 4)
+    //              m            a
     public void sort(Comparator<T> comparator) {
-        DoubleLinkedListQueue<T> listaOrdenada = new DoubleLinkedListQueue<>();
-        DequeNode<T> aux = root;
-        DequeNode<T> sig = aux.getNext();
-
-        int tam = size();
-        for (int i = 0 ; i < tam ; i++) {
-            while (!sig.isLastNode()) {
-                int orden = comparator.compare(aux.getItem(),sig.getItem());
-                if (orden > 0) {
-                    aux = sig;
-                }
-                sig = sig.getNext();
-            }
-            listaOrdenada.append(aux);
-            delete(aux);
+        if (root == null) {
+            throw new RuntimeException("Lista vacia");
         }
+
+        DequeNode<T> current= null;
+        DequeNode<T> siguiente= null;
+        T temporal;
+
+        for(current = root; current.getNext() != null; current = current.getNext()) {
+
+            for (siguiente = current.getNext(); siguiente != null; siguiente = siguiente.getNext()) {
+
+                if (comparator.compare(current.getItem(), siguiente.getItem()) > 0) {
+                    temporal = current.getItem();
+                    current.setItem(siguiente.getItem());
+                    siguiente.setItem(temporal);
+                }
+            }
+        }
+
     }
 
 }
